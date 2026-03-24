@@ -1,5 +1,4 @@
 const display = document.querySelector(".display input");
-const historicoDiv = document.querySelector(".display .historico");
 
 
 let expressao = ""; 

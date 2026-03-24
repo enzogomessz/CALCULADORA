@@ -1,0 +1,76 @@
+# Calculadora Pixel Game
+
+## 1. Visão Geral
+
+O **Calculadora Pixel Game** é um projeto de aplicação web que implementa três tipos de calculadoras com design pixelizado:
+
+1. **Calculadora Comum** – realiza operações matemáticas básicas e avançadas, incluindo porcentagem, raiz quadrada, inverso, potência, etc.  
+2. **Calculadora de Juros Compostos** – permite simular o crescimento de um investimento ao longo do tempo, considerando aporte mensal e taxa de juros.  
+3. **Calculadora BI** – em desenvolvimento, futuramente implementará funcionalidades de Business Intelligence (BI).
+
+O objetivo principal do projeto é demonstrar habilidades de desenvolvimento web (HTML, CSS e JavaScript), lógica de programação aplicada a cálculos financeiros e design responsivo.
+
+---
+
+## 2. Funcionalidades
+
+### 2.1 Calculadora Comum
+- Operações: soma, subtração, multiplicação, divisão  
+- Funções avançadas: porcentagem (%), inverso (¹/x), quadrado (x²), raiz quadrada (√x)  
+- Função limpar (C / CE) e backspace  
+- Suporte a teclado: números, operadores e Enter para calcular  
+
+### 2.2 Calculadora de Juros Compostos
+- Entrada de:
+  - Valor inicial do investimento  
+  - Aporte mensal  
+  - Taxa de juros (%)  
+  - Período em meses  
+- Cálculo do montante total com ou sem juros compostos  
+- Resultado exibido em moeda brasileira (R$)  
+- Suporte total a teclado: Backspace e Enter  
+
+### 2.3 Calculadora BI
+- Em desenvolvimento – futuramente exibirá gráficos e análises de investimentos  
+
+---
+
+## 3. Tecnologias Utilizadas
+
+- **HTML5** – estrutura da página e elementos interativos  
+- **CSS3** – layout responsivo e estilos pixelizados  
+- **JavaScript (ES6)** – lógica de cálculos, manipulação do DOM e suporte ao teclado  
+- **Git/GitHub** – versionamento de código  
+
+---
+
+## 4. Estrutura do Projeto
+
+
+calculadora-pixel-game/
+│
+├─ index.html # Página principal com as três calculadoras
+├─ style.css # Estilos gerais da aplicação
+├─ script.js # Lógica da Calculadora Comum
+├─ juros.js # Lógica da Calculadora de Juros Compostos
+└─ README.md # Documentação do projeto
+
+
+---
+
+5. Autores
+Gaspar
+Matheus
+Marcos
+Enzo
+
+Projeto desenvolvido para fins acadêmicos em 2026.
+
+6. Licença
+
+Este projeto é open-source. É permitido usar, modificar e distribuir, desde que os créditos sejam mantidos.
+
+7. Referências
+Fórmula de Juros Compostos: Investopedia
+Documentação JavaScript: MDN Web Docs | NOTION DIO
+Estilos e layouts responsivos: CSS-Tricks

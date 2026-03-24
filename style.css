@@ -1,37 +1,74 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap'); /* Link de fontes */
+/* style.css - ATUALIZADO 23/03/2026 */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 * { box-sizing: border-box; }
 
 body {
     margin: 0; padding: 0; overflow: hidden;
     font-family: 'Press Start 2P', cursive;
-    background: #5c94fc url('https://le-penseur-reborn.github.io/calculadora/img/bg-pixel.png') repeat-x bottom;
-    background-size: contain;
+    background: 
+        radial-gradient(circle at center, #2e1a47 0%, #110522 70%),
+        linear-gradient(to top, #ff0055 0%, #ff8800 100%),
+        rgba(0,0,0,0); /* placeholder para animação */
+    background-size: cover;
     background-attachment: fixed;
     height: 100vh;
 }
 
-/* TÍTULO */
-.titulo-topo {
-    position: fixed; top: 30px; width: 100%; text-align: center; z-index: 100;
-}
-.titulo-topo span {
-    background-color: #000; color: #fff; padding: 15px 30px;
-    border: 4px solid #fff; box-shadow: 6px 6px 0px #e67e22;
-    display: inline-block; font-size: 1.5rem;
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 200vh;
+    background-image: 
+        linear-gradient(90deg, transparent 0%, transparent 2%, #00ffff 2%, #00ffff 3%, transparent 3%, transparent 100%), /* Linhas Verticais Cyan */
+        linear-gradient(0deg, transparent 0%, transparent 2%, #ff00ff 2%, #ff00ff 3%, transparent 3%, transparent 100%);  /* Linhas Horizontais Magenta */
+    background-size: 50px 50px; /* Tamanho da grade pixelada */
+    
+    /* Animação para mover a grade */
+    animation: retro-grid 2s linear infinite;
+    
+    /* Posição e transparência */
+    opacity: 0.15;
+    z-index: -1;
+    pointer-events: none;
 }
 
-/* CARROSSEL */
+/* TÍTULO PRINCIPAL */
+.titulo-topo {
+    position: fixed; 
+    top: 30px; 
+    width: 100%; 
+    text-align: center; 
+    z-index: 100;
+}
+
+.titulo-topo span {
+    background-color: #000; 
+    color: #fff; 
+    padding: 15px 30px;
+    border: 4px solid #fff; 
+    box-shadow: 6px 6px 0px #e67e22;
+    display: inline-block; 
+    font-size: 1.5rem;
+}
+
+/* CARROSSEL E NAVEGAÇÃO */
 form.carrossel {
-    position: absolute; top: 0; left: 0; bottom: 0; right: 0;
-    white-space: nowrap; display: flex; align-items: center;
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    bottom: 0; 
+    right: 0;
+    white-space: nowrap; 
+    display: flex; 
+    align-items: center;
 }
 
 input[type="radio"] { 
-    display: none; /* Escondidos mas funcionais */
+    display: none; 
 }
 
-/* Estilização das Telas */
 .tela {
     transition: transform 600ms cubic-bezier(0.2, 1, 0.3, 1);
     display: inline-block;
@@ -40,17 +77,16 @@ input[type="radio"] {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.3);
     position: relative;
 }
 
-/* MOVIMENTO CSS */
+/* LÓGICA DE MOVIMENTO (ORDEM REVISADA) */
 #comum:checked ~ .tela { transform: translate3d(0, 0, 0); }
-#bi:checked ~ .tela { transform: translate3d(-100%, 0, 0); }
-#juros:checked ~ .tela { transform: translate3d(-200%, 0, 0); }
-#config:checked ~ .tela { transform: translate3d(-300%, 0, 0); }
+#juros:checked ~ .tela { transform: translate3d(-100%, 0, 0); }
+#bi:checked ~ .tela { transform: translate3d(-200%, 0, 0); }
 
-/* SETAS NAS EXTREMIDADES */
+/* SETAS */
 .seta-esq, .seta-dir {
     position: absolute;
     top: 50%;
@@ -64,11 +100,12 @@ input[type="radio"] {
     transition: 0.2s;
     user-select: none;
 }
+
 .seta-esq:hover, .seta-dir:hover { color: #ffff00; scale: 1.2; }
 .seta-esq { left: 2%; }
 .seta-dir { right: 2%; }
 
-/* CALCULADORA */
+/* ESTRUTURA DAS CALCULADORAS */
 .calculadora-container {
     display: flex;
     flex-direction: column;
@@ -76,8 +113,12 @@ input[type="radio"] {
 }
 
 .titulo-calculadora {
-    color: #fff; font-size: 0.9rem; margin-bottom: 15px;
-    background: #e67e22; padding: 10px; border: 3px solid #000;
+    color: #fff; 
+    font-size: 0.9rem; 
+    margin-bottom: 15px;
+    background: #e67e22; 
+    padding: 10px; 
+    border: 3px solid #000;
 }
 
 .calculadora {
@@ -88,14 +129,21 @@ input[type="radio"] {
     box-shadow: 12px 12px 0px rgba(0,0,0,0.4);
 }
 
+/* DISPLAY */
 .display input {
-    width: 100%; height: 80px; margin-bottom: 15px;
-    background-color: #9bbc0f; border: 4px solid #000;
-    color: #0f380f; text-align: right; padding: 15px;
-    font-size: 1.3rem; font-family: 'Press Start 2P', cursive;
+    width: 100%; 
+    height: 80px; 
+    margin-bottom: 15px;
+    background-color: #9bbc0f; 
+    border: 4px solid #000;
+    color: #0f380f; 
+    text-align: right; 
+    padding: 15px;
+    font-size: 1.3rem; 
+    font-family: 'Press Start 2P', cursive;
 }
 
-
+/* BOTÕES GERAIS */
 .botoes {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -118,20 +166,69 @@ button:active { transform: translate(2px, 2px); box-shadow: 0px 0px #000; }
 
 .btn-igual { background-color: #888; color: #000; }
 
+/* CALCULADORA DE JUROS COMPOSTOS (ESPECÍFICO) */
+.juros-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.campo-juros {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.campo-juros label {
+    color: #fff;
+    font-size: 0.6rem;
+    text-align: left;
+}
+
+.campo-juros input {
+    background-color: #fff;
+    border: 3px solid #000;
+    padding: 10px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    width: 100%;
+}
+
+.btn-calcular {
+    width: 100%;
+    height: 50px;
+    background-color: #e67e22;
+    color: #fff;
+    border: 4px solid #000;
+    margin-top: 10px;
+    font-size: 0.8rem;
+}
+
+.btn-calcular:hover { background-color: #d35400; }
+
+.display-juros {
+    margin-top: 10px;
+    border-top: 2px dashed #444;
+    padding-top: 15px;
+}
+
+.display-juros small {
+    color: #9bbc0f;
+    font-size: 0.5rem;
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.display-juros input {
+    height: 60px;
+    font-size: 1rem;
+}
+
+/* MENSAGENS E FOOTER */
 .pixel-msg {
     color: #fff; border: 4px solid #fff; padding: 40px;
     background: #000; font-size: 1.2rem; text-align: center;
-}
-
-
-footer {
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 5px 10px;
-  font-size: 10px;
-  font-family: 'Press Start 2P', cursive;
-  width: 100%;
 }
 
 footer {
@@ -147,14 +244,14 @@ footer {
   z-index: 9999;     
 }
 
-footer a {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 5px;
-}
+footer p { margin: 0; }
 
-footer a:hover {
-  text-decoration: underline;
+/* DEFINIÇÃO DA ANIMAÇÃO DO FUNDO */
+@keyframes retro-grid {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-50px);
+    }
 }
-
-/* BY GASPAR /
