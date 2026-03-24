@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Calculadora Pixel Game</title>
+</head>
+<body>
+
+    <h1 class="titulo-topo"><span>Calculadoras</span></h1>
+
+    <form class="carrossel" onsubmit="return false;">
+        <input type="radio" name="fancy" value="comum" id="comum" checked />
+        <input type="radio" name="fancy" value="bi" id="bi" />
+        <input type="radio" name="fancy" value="juros" id="juros" />
+        <input type="radio" name="fancy" value="config" id="config" />
+
+        <label class="tela" for="comum">
+            <label class="seta-esq" for="config">❮</label>
+            <div class="calculadora-container">
+                <h2 class="titulo-calculadora">Calculadora Comum</h2>
+                <div class="calculadora">
+                    
+                    <div class="display">
+                        <input type="text" readonly value="0">
+                    </div>
+                    <div class="botoes">
+                        <button type="button" class="btn-op">%</button><button type="button" class="btn-op">CE</button><button type="button" class="btn-op">C</button><button type="button" class="btn-op">⌫</button>
+                        <button type="button" class="btn-op">¹/x</button><button type="button" class="btn-op">x²</button><button type="button" class="btn-op">²√x</button><button type="button" class="btn-op">÷</button>
+                        <button type="button" class="btn-num">7</button><button type="button" class="btn-num">8</button><button type="button" class="btn-num">9</button><button type="button" class="btn-op">×</button>
+                        <button type="button" class="btn-num">4</button><button type="button" class="btn-num">5</button><button type="button" class="btn-num">6</button><button type="button" class="btn-op">-</button>
+                        <button type="button" class="btn-num">1</button><button type="button" class="btn-num">2</button><button type="button" class="btn-num">3</button><button type="button" class="btn-op">+</button>
+                        <button type="button" class="btn-num">+/-</button><button type="button" class="btn-num">0</button><button type="button" class="btn-num">,</button><button type="button" class="btn-igual">=</button>
+                    </div>
+                </div>
+            </div>
+            <label class="seta-dir" for="bi">❯</label>
+        </label>
+
+        <label class="tela" for="bi">
+            <label class="seta-esq" for="comum">❮</label>
+            <div class="pixel-msg">Calculadora Bi<br><br>Em Breve</div>
+            <label class="seta-dir" for="juros">❯</label>
+        </label>
+
+        <label class="tela" for="juros">
+            <label class="seta-esq" for="bi">❮</label>
+            <div class="pixel-msg">Juros Compostos<br><br>Em Breve</div>
+            <label class="seta-dir" for="config">❯</label>
+        </label>
+
+        <label class="tela" for="config">
+            <label class="seta-esq" for="juros">❮</label>
+            <div class="pixel-msg">Configurações</div>
+            <label class="seta-dir" for="comum">❯</label>
+        </label>
+    </form>
+    <footer class="rotulo">
+        <p>BY GASPAR, MATHEUS, MARCOS e ENZO © 2026</p>
+        
+    </footer>
+
+</body>
+</html>
+
+<!--BY GASPAR -->
