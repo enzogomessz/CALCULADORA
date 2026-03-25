@@ -1,12 +1,11 @@
 const display = document.querySelector(".display input");
 
-
-let expressao = ""; 
-
-let resetarDisplay = false; 
+let expressao = "";
+let resetarDisplay = false;
 
 function atualizarDisplay() {
-    display.value = expressao.replace(".", ",");
+    
+    display.value = expressao === "" ? "0" : expressao.replace(/\./g, ",");
 }
 
 document.querySelectorAll(".btn-num").forEach(btn => {
@@ -16,9 +15,7 @@ document.querySelectorAll(".btn-num").forEach(btn => {
         if (valor === ",") valor = ".";
 
         if (valor === "+/-") {
-           
             let partes = expressao.match(/-?\d+\.?\d*$/);
-
             if (partes) {
                 let ultimoNumero = partes[0];
                 let invertido = (-parseFloat(ultimoNumero)).toString();
@@ -45,20 +42,23 @@ document.querySelectorAll(".btn-op").forEach(btn => {
 
         switch (op) {
             case "C":
-                expressao = "";
-                break;
             case "CE":
                 expressao = "";
+                resetarDisplay = false;
                 break;
             case "⌫":
-                expressao = expressao.slice(0, -1);
+                if (resetarDisplay) {
+                    expressao = "";
+                    resetarDisplay = false;
+                } else {
+                    expressao = expressao.slice(0, -1);
+                }
                 break;
             case "%":
-                
                 let partes = expressao.match(/\d+\.?\d*$/);
                 if (partes) {
                     let ultimoNumero = partes[0];
-                    let convertido = (parseFloat(ultimoNumero)/100).toString();
+                    let convertido = (parseFloat(ultimoNumero) / 100).toString();
                     expressao = expressao.slice(0, -ultimoNumero.length) + convertido;
                 }
                 break;
@@ -66,14 +66,14 @@ document.querySelectorAll(".btn-op").forEach(btn => {
                 let p = expressao.match(/\d+\.?\d*$/);
                 if (p) {
                     let n = parseFloat(p[0]);
-                    expressao = expressao.slice(0, -p[0].length) + (1/n).toString();
+                    expressao = expressao.slice(0, -p[0].length) + (1 / n).toString();
                 }
                 break;
             case "x²":
                 let px2 = expressao.match(/\d+\.?\d*$/);
                 if (px2) {
                     let n = parseFloat(px2[0]);
-                    expressao = expressao.slice(0, -px2[0].length) + (n**2).toString();
+                    expressao = expressao.slice(0, -px2[0].length) + (n ** 2).toString();
                 }
                 break;
             case "²√x":
@@ -87,6 +87,7 @@ document.querySelectorAll(".btn-op").forEach(btn => {
             case "-":
             case "×":
             case "÷":
+                if (resetarDisplay) resetarDisplay = false;
                 expressao += op;
                 break;
         }
@@ -98,11 +99,12 @@ document.querySelectorAll(".btn-op").forEach(btn => {
 document.querySelector(".btn-igual").addEventListener("click", () => {
     if (!expressao) return;
 
-    
     let calculo = expressao.replace(/×/g, "*").replace(/÷/g, "/");
 
     try {
         let resultado = eval(calculo);
+        
+        resultado = parseFloat(resultado.toFixed(10));
         expressao = resultado.toString();
         resetarDisplay = true;
     } catch {
@@ -113,16 +115,23 @@ document.querySelector(".btn-igual").addEventListener("click", () => {
     atualizarDisplay();
 });
 
+function calculadoraComumAtiva() {
+    return document.getElementById("comum").checked;
+}
+
 document.addEventListener("keydown", (e) => {
+    if (document.activeElement && document.activeElement.tagName === "INPUT") return;
+    if (!calculadoraComumAtiva()) return;
+
     const tecla = e.key;
 
     if (["Enter", "Backspace"].includes(tecla)) e.preventDefault();
-    
-    if(!isNaN(tecla)) {
-        if (resetarDisplay){
+
+    if (!isNaN(tecla) && tecla !== " ") {
+        if (resetarDisplay) {
             expressao = tecla;
             resetarDisplay = false;
-        }else{
+        } else {
             expressao += tecla;
         }
     }
@@ -132,19 +141,21 @@ document.addEventListener("keydown", (e) => {
     }
 
     if (["+", "-", "*", "/"].includes(tecla)) {
-            let op = tecla;
-            if (op === "*") op = "×";
-            if (op === "/") op = "÷";
-            expressao += op;
+        let op = tecla;
+        if (op === "*") op = "×";
+        if (op === "/") op = "÷";
+        if (resetarDisplay) resetarDisplay = false;
+        expressao += op;
     }
 
     if (tecla === "Enter") {
         if (!expressao) return;
 
-        let calculo = expressao.replace(/x/g, "*").replace(/÷/g, "/");
+        let calculo = expressao.replace(/×/g, "*").replace(/÷/g, "/");
 
         try {
             let resultado = eval(calculo);
+            resultado = parseFloat(resultado.toFixed(10));
             expressao = resultado.toString();
             resetarDisplay = true;
         } catch {
@@ -153,14 +164,19 @@ document.addEventListener("keydown", (e) => {
         }
     }
 
-    if (tecla === "Backspace"){
-        expressao = expressao.slice(0, -1);
+    if (tecla === "Backspace") {
+        if (resetarDisplay) {
+            expressao = "";
+            resetarDisplay = false;
+        } else {
+            expressao = expressao.slice(0, -1);
+        }
     }
 
     if (tecla.toLowerCase() === "c") {
         expressao = "";
+        resetarDisplay = false;
     }
-
 
     atualizarDisplay();
 });
@@ -168,3 +184,4 @@ document.addEventListener("keydown", (e) => {
 atualizarDisplay();
 
 //BY ENZO GOMES
+// CORREÇÂO DE ERROR CLAUDE

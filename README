@@ -1,78 +1,92 @@
-# Calculadora Pixel Game
+Calculadora Pixel Game
+1. Visão Geral
 
-## 1. Visão Geral
+O Calculadora Pixel Game é uma aplicação web que implementa três tipos de calculadoras com design pixelizado retrô, animações de grade e navegação por carrossel interativo.
 
-O **Calculadora Pixel Game** é um projeto de aplicação web que implementa três tipos de calculadoras com design pixelizado:
+Calculadora Comum – realiza operações matemáticas básicas e avançadas, com suporte completo a teclado.
+Calculadora de Juros Compostos – simula o crescimento de um investimento ao longo do tempo, considerando aporte mensal e taxa de juros compostos.
+Calculadora BI – em desenvolvimento, futuramente implementará funcionalidades de Business Intelligence.
 
-1. **Calculadora Comum** – realiza operações matemáticas básicas e avançadas, incluindo porcentagem, raiz quadrada, inverso, potência, etc.  
-2. **Calculadora de Juros Compostos** – permite simular o crescimento de um investimento ao longo do tempo, considerando aporte mensal e taxa de juros.  
-3. **Calculadora BI** – em desenvolvimento, futuramente implementará funcionalidades de Business Intelligence (BI).
+O projeto foi desenvolvido para demonstrar habilidades em HTML, CSS e JavaScript, com foco em lógica de programação, manipulação do DOM e design responsivo.
 
-O objetivo principal do projeto é demonstrar habilidades de desenvolvimento web (HTML, CSS e JavaScript), lógica de programação aplicada a cálculos financeiros e design responsivo.
+2. Funcionalidades
+2.1 Calculadora Comum
 
----
+Operações: soma, subtração, multiplicação e divisão
+Funções avançadas: porcentagem (%), inverso (¹/x), quadrado (x²), raiz quadrada (²√x)
+Inversão de sinal (+/-)
+Limpar display (C / CE) e backspace (⌫)
+Encadeamento de operações: o resultado de uma conta pode ser usado diretamente na próxima
+Correção de ponto flutuante (ex: 0.1 + 0.2 exibe 0.3 corretamente)
+Display sempre mostra 0 quando vazio
+Suporte a teclado: números, operadores (+ - * /), vírgula, Enter para calcular, Backspace para apagar e C para limpar
 
-## 2. Funcionalidades
+2.2 Calculadora de Juros Compostos
 
-### 2.1 Calculadora Comum
-- Operações: soma, subtração, multiplicação, divisão  
-- Funções avançadas: porcentagem (%), inverso (¹/x), quadrado (x²), raiz quadrada (√x)  
-- Função limpar (C / CE) e backspace  
-- Suporte a teclado: números, operadores e Enter para calcular  
+Entradas:
 
-### 2.2 Calculadora de Juros Compostos
-- Entrada de:
-  - Valor inicial do investimento  
-  - Aporte mensal  
-  - Taxa de juros (%)  
-  - Período em meses  
-- Cálculo do montante total com ou sem juros compostos  
-- Resultado exibido em moeda brasileira (R$)  
-- Suporte total a teclado: Backspace e Enter  
-
-### 2.3 Calculadora BI
-- Em desenvolvimento – futuramente exibirá gráficos e análises de investimentos  
-
----
-
-## 3. Tecnologias Utilizadas
-
-- **HTML5** – estrutura da página e elementos interativos  
-- **CSS3** – layout responsivo e estilos pixelizados  
-- **JavaScript (ES6)** – lógica de cálculos, manipulação do DOM e suporte ao teclado  
-- **Git/GitHub** – versionamento de código  
-
----
-
-## 4. Estrutura do Projeto
+Valor inicial do investimento
+Aporte mensal
+Taxa de juros (%)
+Período em meses
 
 
+Cálculo do montante com ou sem juros compostos
+Resultado exibido em moeda brasileira (R$)
+Suporte a teclado: Enter para calcular, Backspace para apagar e vírgula convertida automaticamente para ponto decimal
+
+2.3 Calculadora BI
+
+Em desenvolvimento — futuramente exibirá gráficos e análises de investimentos
+
+2.4 Navegação por Carrossel
+
+Troca de calculadora pelas setas laterais (clique) ou pelas teclas ← → do teclado
+Animação suave de transição entre telas
+As setas do teclado são ignoradas quando o foco está em campos de input
+
+
+3. Tecnologias Utilizadas
+
+HTML5 – estrutura da página e elementos interativos
+CSS3 – layout em carrossel, animação de grade retrô e estilos pixelizados com a fonte Press Start 2P
+JavaScript ES6 – lógica de cálculos, manipulação do DOM e suporte a teclado
+Git/GitHub – versionamento de código
+
+
+4. Estrutura do Projeto
 calculadora-pixel-game/
 │
-├─ index.html # Página principal com as três calculadoras
-├─ style.css # Estilos gerais da aplicação
-├─ script.js # Lógica da Calculadora Comum
-├─ juros.js # Lógica da Calculadora de Juros Compostos
-├─ calcbin.js # Lógida da Calculadora binária.
-└─ README.md # Documentação do projeto
+├── index.html       # Página principal com as três calculadoras em carrossel
+├── style.css        # Estilos gerais, animações e tema pixel
+├── comum.js         # Lógica da Calculadora Comum
+├── interest.js      # Lógica da Calculadora de Juros Compostos
+├── arrow.js         # Navegação por teclado entre as calculadoras
+└── README.md        # Documentação do projeto
 
+5. Como Usar
 
----
+Clone ou baixe o repositório
+Abra o arquivo index.html em qualquer navegador moderno
+Navegue entre as calculadoras pelas setas laterais ou pelas teclas ← →
 
-5. Desenvolvedores
-Enzo
+Não requer instalação de dependências ou servidor — roda direto no navegador.
+
+6. Autores
+
+Gaspar
 Matheus
 Marcos
-Gaspar
-
+Enzo
 
 Projeto desenvolvido para fins acadêmicos em 2026.
 
-6. Licença
-
+7. Licença
 Este projeto é open-source. É permitido usar, modificar e distribuir, desde que os créditos sejam mantidos.
 
-7. Referências
+8. Referências
+
 Fórmula de Juros Compostos: Investopedia
 Documentação JavaScript: MDN Web Docs | NOTION DIO
 Estilos e layouts responsivos: CSS-Tricks
+Fonte pixelizada: Press Start 2P — Google Fonts

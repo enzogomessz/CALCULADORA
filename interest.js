@@ -32,10 +32,22 @@ if (btnCalcular) {
 const inputsJuros = document.querySelectorAll(".juros-container input");
 
 inputsJuros.forEach(input => {
+    
     input.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
             e.preventDefault();
             btnCalcular.click();
         }
     });
+
+    
+    input.addEventListener("keypress", (e) => {
+        if (e.key === "," || e.key === ".") {
+            e.preventDefault();
+            if (!input.value.includes(".")) {
+                input.value += ".";
+            }
+        }
+    });
 });
+// BY ENZO GOMES
