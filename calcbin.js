@@ -1,7 +1,6 @@
-// script.js - IMPLEMENTAÇÃO DA CALCULADORA BINÁRIA OPERACIONAL
 document.addEventListener('DOMContentLoaded', () => {
     
-    // Seleção dos elementos da calculadora binária
+
     const btnCalcularBi = document.querySelector('.tela[for="bi"] .btn-calcular');
     const inputBin1 = document.getElementById('bin-v1');
     const inputBin2 = document.getElementById('bin-v2');
@@ -11,10 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const botoesOp = document.querySelectorAll('.tela[for="bi"] .btn-op');
     let operacaoSelecionada = '+'; // Operação padrão
 
-    // Adiciona evento de clique para selecionar a operação
+    // Adiciona evento de clique
     botoesOp.forEach(botao => {
         botao.addEventListener('click', () => {
-            // Reseta o estilo de todos os botões de operação da tela binária
+            // Reseta o estilo de todos os botões
             botoesOp.forEach(b => {
                 b.style.backgroundColor = '#000';
                 b.style.color = '#00ffff';
@@ -34,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const val1 = inputBin1.value.trim();
         const val2 = inputBin2.value.trim();
 
-        // Validação: verifica se os campos não estão vazios e se são binários (apenas 0 e 1)
         const regexBinario = /^[01]+$/;
         
         if (!regexBinario.test(val1) || !regexBinario.test(val2)) {
