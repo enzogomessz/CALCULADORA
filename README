@@ -53,16 +53,18 @@ calculadora-pixel-game/
 ├─ style.css # Estilos gerais da aplicação
 ├─ script.js # Lógica da Calculadora Comum
 ├─ juros.js # Lógica da Calculadora de Juros Compostos
+├─ calcbin.js # Lógida da Calculadora binária.
 └─ README.md # Documentação do projeto
 
 
 ---
 
-5. Autores
-Gaspar
+5. Desenvolvedores
+Enzo
 Matheus
 Marcos
-Enzo
+Gaspar
+
 
 Projeto desenvolvido para fins acadêmicos em 2026.
 
