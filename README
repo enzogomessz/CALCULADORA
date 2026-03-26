@@ -37,7 +37,14 @@ Suporte a teclado: Enter para calcular, Backspace para apagar e vírgula convert
 
 2.3 Calculadora BI
 
-Em desenvolvimento — futuramente exibirá gráficos e análises de investimentos
+Calcula Adição; Subtração; Divisão e Multiplicação entre números binários.
+Acompanha Conversor de números binários para:
+- Octal
+- Decimal
+- Hexadecimal
+- Utilização de bases
+
+funcionalidade de limpeza de caixas de preenchimento.
 
 2.4 Navegação por Carrossel
 
@@ -78,7 +85,7 @@ Use o GitPage : https://enzogomessz.github.io/CALCULADORA/
 
 6. Autores
 
-Gaspar
+Gaspar 
 Matheus
 Marcos
 Enzo
