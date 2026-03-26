@@ -1,6 +1,6 @@
 // calcbin.js - CALCULADORA BINÁRIA + CONVERSOR COM ANIMAÇÕES
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     // ==========================================
     // LÓGICA DAS ABAS (CALCULADORA / CONVERSOR)
     // ==========================================
@@ -13,13 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (abaAtiva === 'calc') {
             conteudoCalc.style.display = 'block';
             conteudoConv.style.display = 'none';
-            
-            // Reinicia a animação de fadeIn definida no CSS
             conteudoCalc.style.animation = 'none';
-            conteudoCalc.offsetHeight; // Trigger reflow
+            conteudoCalc.offsetHeight;
             conteudoCalc.style.animation = null;
-
-            // Estilização dos botões das abas
             tabCalc.style.backgroundColor = '#00ffff';
             tabCalc.style.color = '#000';
             tabConv.style.backgroundColor = '#000';
@@ -27,12 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             conteudoCalc.style.display = 'none';
             conteudoConv.style.display = 'block';
-            
-            // Reinicia a animação de fadeIn definida no CSS
             conteudoConv.style.animation = 'none';
-            conteudoConv.offsetHeight; // Trigger reflow
+            conteudoConv.offsetHeight;
             conteudoConv.style.animation = null;
-
             tabConv.style.backgroundColor = '#00ffff';
             tabConv.style.color = '#000';
             tabCalc.style.backgroundColor = '#000';
@@ -52,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputBin2 = document.getElementById('bin-v2');
     const inputResult = document.getElementById('bin-res');
     const botoesOp = document.querySelectorAll('#conteudo-calc .btn-op');
-    let operacaoSelecionada = '+'; 
+    let operacaoSelecionada = '+';
 
     botoesOp.forEach(botao => {
         botao.addEventListener('click', () => {
@@ -68,10 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    btnCalcularBi.addEventListener('click', () => {
+    function calcularBinario() {
         const val1 = inputBin1.value.trim();
         const val2 = inputBin2.value.trim();
-        
         if (val1 === '' || val2 === '') return;
 
         const num1 = parseInt(val1, 2);
@@ -84,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
             case '×': resultadoDecimal = num1 * num2; break;
             case '÷':
                 if (num2 === 0) {
-                    alert("Erro: Divisão por zero!");
+                    inputResult.value = 'ERRO';
                     return;
                 }
                 resultadoDecimal = Math.floor(num1 / num2);
@@ -92,10 +84,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         inputResult.value = resultadoDecimal.toString(2);
-    });
+    }
 
-    // Filtro para inputs binários
+    btnCalcularBi.addEventListener('click', calcularBinario);
+
+    // Enter nos campos binários também calcula
     [inputBin1, inputBin2].forEach(input => {
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                calcularBinario();
+            }
+        });
+
+        // Filtro: só aceita 0 e 1
         input.addEventListener('input', (e) => {
             e.target.value = e.target.value.replace(/[^01]/g, '');
         });
@@ -107,14 +109,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     const radiosConv = document.querySelectorAll('.radio-conv');
     const btnLimparConv = document.getElementById('btn-limpar-conv');
-    
+
     const inputsConv = {
-        '2': document.getElementById('conv-bin'),
-        '8': document.getElementById('conv-oct'),
+        '2':  document.getElementById('conv-bin'),
+        '8':  document.getElementById('conv-oct'),
         '10': document.getElementById('conv-dec'),
         '16': document.getElementById('conv-hex'),
-        'n': document.getElementById('conv-n'),
-        'x': document.getElementById('conv-x')
+        'n':  document.getElementById('conv-n'),
+        'x':  document.getElementById('conv-x')
     };
 
     const inputBaseN = document.getElementById('conv-base-n');
@@ -133,10 +135,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         let decimal = parseInt(valor, baseOrigem);
-        
+
         if (isNaN(decimal)) {
             Object.keys(inputsConv).forEach(key => {
-                if (inputsConv[key].getAttribute('readonly')) {
+                if (inputsConv[key].hasAttribute('readonly')) {
                     inputsConv[key].value = '...';
                 }
             });
@@ -145,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         Object.keys(inputsConv).forEach(key => {
             const inputDestino = inputsConv[key];
-            if (inputDestino.getAttribute('readonly')) {
+            if (inputDestino.hasAttribute('readonly')) {
                 let baseDestino = obterBaseNumerica(key);
                 if (baseDestino >= 2 && baseDestino <= 36) {
                     inputDestino.value = decimal.toString(baseDestino).toUpperCase();
@@ -158,7 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
     radiosConv.forEach(radio => {
         radio.addEventListener('change', (e) => {
             let baseSelecionada = e.target.value;
-            
             Object.keys(inputsConv).forEach(key => {
                 if (key === baseSelecionada) {
                     inputsConv[key].removeAttribute('readonly');
@@ -170,18 +171,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Eventos de digitação para cálculo em tempo real
+    // Digitação em tempo real
     Object.keys(inputsConv).forEach(key => {
         inputsConv[key].addEventListener('input', (e) => {
             let baseOrigem = obterBaseNumerica(key);
             let val = e.target.value.toUpperCase();
-            
-            // Filtros básicos por base
-            if(baseOrigem === 2) val = val.replace(/[^01]/g, '');
-            else if(baseOrigem === 8) val = val.replace(/[^0-7]/g, '');
-            else if(baseOrigem === 10) val = val.replace(/[^0-9]/g, '');
-            else if(baseOrigem === 16) val = val.replace(/[^0-9A-F]/g, '');
-            
+
+            if (baseOrigem === 2)  val = val.replace(/[^01]/g, '');
+            else if (baseOrigem === 8)  val = val.replace(/[^0-7]/g, '');
+            else if (baseOrigem === 10) val = val.replace(/[^0-9]/g, '');
+            else if (baseOrigem === 16) val = val.replace(/[^0-9A-F]/g, '');
+
             e.target.value = val;
             atualizarConversao(val, baseOrigem);
         });

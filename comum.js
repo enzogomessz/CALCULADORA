@@ -184,4 +184,4 @@ document.addEventListener("keydown", (e) => {
 atualizarDisplay();
 
 //BY ENZO GOMES
-// CORREÇÂO DE ERROR CLAUDE
+//CORREÇÂO DE ERROR CLAUDE
