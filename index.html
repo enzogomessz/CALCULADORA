@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,7 @@
     <script src="comum.js" defer></script>
     <script src="interest.js" defer></script>
     <script src="arrow.js" defer></script>
+    <script src="calcbin.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <title>Calculadora Pixel Game</title>
 </head>
@@ -45,24 +46,24 @@
                 <h2 class="titulo-calculadora">Juros Compostos</h2>
                 <div class="calculadora juros-container">
                     <div class="campo-juros">
-                        <label>Valor Inicial:</label>
-                        <input type="text" inputmode="decimal" placeholder="R$ 0,00">
+                        <label>Valor Inicial (O que você já tem):</label>
+                        <input type="number" placeholder="R$ 0,00">
                     </div>
                     <div class="campo-juros">
-                        <label>Aporte Mensal:</label>
-                        <input type="text" inputmode="decimal" placeholder="R$ 0,00">
+                        <label>Aporte Mensal (Quanto vai guardar por mês):</label>
+                        <input type="number" placeholder="R$ 0,00">
                     </div>
                     <div class="campo-juros">
-                        <label>Taxa de Juros (%):</label>
-                        <input type="text" inputmode="decimal" placeholder="0.00">
+                        <label>Taxa de Juros (% de rendimento ao mês):</label>
+                        <input type="number" placeholder="0.00">
                     </div>
                     <div class="campo-juros">
-                        <label>Período (Meses):</label>
-                        <input type="text" inputmode="numeric" placeholder="0">
+                        <label>Tempo (Quantidade total de meses):</label>
+                        <input type="number" placeholder="0">
                     </div>
                     <button type="button" class="btn-calcular">CALCULAR</button>
                     <div class="display display-juros">
-                        <small>Resultado Total:</small>
+                        <small>Resultado (O montante que você vai ter no final):</small>
                         <input type="text" readonly value="R$ 0,00">
                     </div>
                 </div>
@@ -72,14 +73,94 @@
 
         <label class="tela" for="bi">
             <label class="seta-esq" for="juros">❮</label>
-            <div class="pixel-msg">Calculadora Bi<br><br>Em Breve</div>
+            <div class="calculadora-container">
+                <h2 class="titulo-calculadora" style="background: #00ffff; color: #000; box-shadow: 4px 4px 0px #008b8b;">Sistemas Numéricos</h2>
+                <div class="calculadora bi-container" style="border-color: #00ffff; padding: 25px;">
+                    
+                    <div style="display: flex; margin-bottom: 20px;">
+                        <button type="button" id="tab-calc" style="flex: 1; background: #00ffff; color: #000; border: 3px solid #00ffff; height: 40px;">Calculadora</button>
+                        <button type="button" id="tab-conv" style="flex: 1; background: #000; color: #00ffff; border: 3px solid #00ffff; border-left: none; height: 40px;">Conversor</button>
+                    </div>
+
+                    <div id="conteudo-calc">
+                        <div class="campo-juros">
+                            <label style="color: #00ffff;">Valor Binário 1:</label>
+                            <input type="text" id="bin-v1" placeholder="101010" style="background: #000; color: #00ffff; border-color: #00ffff;">
+                        </div>
+
+                        <div class="campo-juros" style="margin: 15px 0;">
+                            <label style="color: #00ffff; display: block; margin-bottom: 5px;">Operação:</label>
+                            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+                                <button type="button" class="btn-op" style="background: #000; color: #00ffff; border: 3px solid #00ffff; box-shadow: 0px 0px 0px;">+</button>
+                                <button type="button" class="btn-op" style="background: #000; color: #00ffff; border: 3px solid #00ffff; box-shadow: 0px 0px 0px;">-</button>
+                                <button type="button" class="btn-op" style="background: #000; color: #00ffff; border: 3px solid #00ffff; box-shadow: 0px 0px 0px;">×</button>
+                                <button type="button" class="btn-op" style="background: #000; color: #00ffff; border: 3px solid #00ffff; box-shadow: 0px 0px 0px;">÷</button>
+                            </div>
+                        </div>
+
+                        <div class="campo-juros">
+                            <label style="color: #00ffff;">Valor Binário 2:</label>
+                            <input type="text" id="bin-v2" placeholder="001100" style="background: #000; color: #00ffff; border-color: #00ffff;">
+                        </div>
+
+                        <button type="button" class="btn-calcular" id="btn-calc-bi" style="background: #00ffff; color: #000; border-color: #000;">CALCULAR RESULTADO</button>
+                        
+                        <div class="display-juros" style="border-top-color: #00ffff; margin-top: 15px;">
+                            <small style="color: #00ffff;">Resposta Binária:</small>
+                            <input type="text" id="bin-res" readonly value="0" style="font-size: 1.1rem; background: #000; color: #00ffff; border-color: #00ffff;">
+                        </div>
+                    </div>
+
+                    <div id="conteudo-conv" style="display: none;">
+                        <div class="linha-conversor">
+                            <input type="radio" name="base-origem" value="2" id="rad-bin" class="radio-conv" checked>
+                            <label for="rad-bin">Binário:</label>
+                            <input type="text" id="conv-bin" class="input-conversor" placeholder="Ex: 1011">
+                        </div>
+                        
+                        <div class="linha-conversor">
+                            <input type="radio" name="base-origem" value="8" id="rad-oct" class="radio-conv">
+                            <label for="rad-oct">Octal:</label>
+                            <input type="text" id="conv-oct" class="input-conversor" readonly>
+                        </div>
+                        
+                        <div class="linha-conversor">
+                            <input type="radio" name="base-origem" value="10" id="rad-dec" class="radio-conv">
+                            <label for="rad-dec">Decimal:</label>
+                            <input type="text" id="conv-dec" class="input-conversor" readonly>
+                        </div>
+                        
+                        <div class="linha-conversor">
+                            <input type="radio" name="base-origem" value="16" id="rad-hex" class="radio-conv">
+                            <label for="rad-hex">Hexa:</label>
+                            <input type="text" id="conv-hex" class="input-conversor" readonly>
+                        </div>
+
+                        <div class="linha-conversor">
+                            <input type="radio" name="base-origem" value="n" id="rad-n" class="radio-conv">
+                            <label for="rad-n" style="width: 45px;">Base</label>
+                            <input type="number" id="conv-base-n" min="2" max="36" value="3" class="input-base-custom">
+                            <input type="text" id="conv-n" class="input-conversor" readonly>
+                        </div>
+
+                        <div class="linha-conversor">
+                            <input type="radio" name="base-origem" value="x" id="rad-x" class="radio-conv">
+                            <label for="rad-x" style="width: 45px;">Base</label>
+                            <input type="number" id="conv-base-x" min="2" max="36" value="5" class="input-base-custom">
+                            <input type="text" id="conv-x" class="input-conversor" readonly>
+                        </div>
+
+                        <button type="button" id="btn-limpar-conv" style="background: #00ffff; color: #000; border: 4px solid #000; width: 100%; height: 50px; font-size: 0.8rem; margin-top: 10px; cursor: pointer;">LIMPAR TUDO</button>
+                    </div>
+                </div>
+            </div>
             <label class="seta-dir" for="comum">❯</label>
         </label>
 
     </form>
 
     <footer class="rotulo">
-        <p>By GASPAR, MATHEUS, MARCOS e ENZO © 2026</p>
+        <p>BY GASPAR, MATHEUS, MARCOS e ENZO © 2026</p>
     </footer>
 
 </body>
